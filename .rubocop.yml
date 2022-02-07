@@ -1,0 +1,68 @@
+require: rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: false
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 3.0.2
+  # Include:
+  #   - '**/Rakefile'
+  #   - '**/config.ru'
+  #   - '**/Gemfile'
+  Exclude:
+    - "bin/**/*"
+    - "spec/**/*_helper.rb"
+    - "spec/**/*_spec.rb"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "vendor/**/*"
+Style/Documentation:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Style:
+  Exclude:
+    - "Capfile"
+    - "Gemfile.lock"
+    - "Rakefile"
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+  AutoCorrect: true
+  SafeAutoCorrect: true
+  Exclude:
+    - 'actionview/test/**/*.builder'
+    - 'actionview/test/**/*.ruby'
+    - 'actionpack/test/**/*.builder'
+    - 'actionpack/test/**/*.ruby'
+    - 'activestorage/db/migrate/**/*.rb'
+    - 'activestorage/db/update_migrate/**/*.rb'
+    - 'actionmailbox/db/migrate/**/*.rb'
+    - 'actiontext/db/migrate/**/*.rb'
+    - 'db/migrate/**/*.rb'
+    - 'db/schema.rb'
+Layout/LineLength:
+  Max: 120
+  Exclude:
+Metrics/ParameterLists:
+  Exclude:
+Metrics/BlockLength:
+  Exclude:
+    - "config/environments/*.rb"
+    - "spec/support/**/*.rb"
+    - "spec/**/*_spec.rb"
+    - "spec/factories/**/*.rb"
+Metrics/MethodLength:
+  Max: 12
+  Exclude:
+Metrics/AbcSize:
+  Exclude:
+# Metrics/ClassLength:
+#   Exclude:
+# Style/ClassAndModuleChildren:
+#   Exclude:
+# Style/Lambda:
+#   Exclude:
