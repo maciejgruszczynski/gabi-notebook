@@ -45,6 +45,9 @@ gem 'bootsnap', require: false
 # Pagination
 gem 'pagy'
 
+# heroku add-on to limit access only to allowed users
+gem 'rack-wwwhisper', '~> 1.0'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

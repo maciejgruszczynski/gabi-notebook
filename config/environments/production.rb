@@ -3,6 +3,9 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  # WWhisper (heroku addon used to limit access)
+  config.middleware.insert 0, Rack::WWWhisper
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
