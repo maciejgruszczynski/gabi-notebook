@@ -59,7 +59,7 @@ Metrics/MethodLength:
   Max: 12
   Exclude:
 Metrics/AbcSize:
-  Exclude:
+  Max: 20
 # Metrics/ClassLength:
 #   Exclude:
 # Style/ClassAndModuleChildren:

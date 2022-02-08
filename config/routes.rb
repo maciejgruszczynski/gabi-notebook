@@ -2,7 +2,9 @@
 
 
 Rails.application.routes.draw do
+  
+  resources :search_notebooks
+  
   root 'home#show'
 
-  resources :search_notebooks
 end

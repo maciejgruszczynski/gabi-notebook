@@ -2,5 +2,4 @@
 
 module SearchNotebooksHelper
   include Pagy::Frontend
-
 end
