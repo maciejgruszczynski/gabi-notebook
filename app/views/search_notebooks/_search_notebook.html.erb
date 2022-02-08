@@ -1,0 +1,8 @@
+<%= content_tag :tr, id: dom_id(search_notebook) do %>
+  <td><%= search_notebook.title %></td>
+  <td><%= search_notebook.created_at %></td>
+  <td>
+    Edit | 
+    <%= link_to 'Delete', search_notebook_path(search_notebook), data: { turbo_method: :delete } %>
+  </td>
+<% end %>

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :new_search_notebook do %>
+
+  <div data-controller="toggle remove">
+    <div data-remove-target="removable">
+      <%= render "form", search_notebook: @search_notebook %>
+      <button data-action="click->toggle#toggle click->remove#remove">Cancel</button>
+    </div>
+      <%= link_to 'add', new_search_notebook_path, data: { "toggle-target" => "toggleable", "css-class" => "hidden" }, class: 'hidden' %>
+  </div>
+<% end %>

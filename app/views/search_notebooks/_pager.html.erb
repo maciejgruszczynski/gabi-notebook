@@ -1,0 +1,24 @@
+<div id="pager">
+  <div>
+    <% if pagy.prev %>
+      <%= link_to(
+        "< Previous page",
+        search_notebooks_path(page: pagy.prev),
+        data: {
+          turbo_action: "advance"
+        }
+      ) %>
+    <% end %>
+  </div>
+  <div>
+    <% if pagy.next %>
+      <%= link_to(
+        "Next page >",
+        search_notebooks_path(page: pagy.next),
+        data: {
+          turbo_action: "advance"
+        }
+      ) %>
+    <% end %>
+  </div>
+</div>

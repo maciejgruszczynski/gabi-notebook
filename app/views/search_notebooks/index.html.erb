@@ -1,0 +1,25 @@
+      <h2>Search notebooks</h2>
+      
+      <%= turbo_stream_from :new %> 
+
+      <%= render 'new_empty_search_notebook' %> 
+
+      <div class="table-responsive">
+        
+        <%= turbo_stream_from :search_notebooks, autoscroll: "true" %>
+
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">title</th>
+              <th scope="col">created_at</th>
+              <th scope="col">actions</th>
+            </tr>
+          </thead>
+          <tbody id="search_notebooks">
+            <%= render @search_notebooks %>
+          </tbody>
+        </table>
+        <%= render "pager", pagy: @pagy %>
+      </div>
+    </div>

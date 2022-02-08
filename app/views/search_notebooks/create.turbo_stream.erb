@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend(:search_notebooks, partial: "search_notebook", locals: { search_notebook: @search_notebook }) %>
+<%= turbo_stream.replace('flash', partial: "layouts/flash") %>
+<%= turbo_stream.replace(:new_search_notebook, partial: 'new_empty_search_notebook') %> 
+
