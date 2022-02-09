@@ -17,6 +17,7 @@ export default class extends Controller {
   static targets = ["removable"];
 
   remove(e){
+    console.log('remove')
     this.removableTargets.forEach((target) => {
       target.parentNode.removeChild(target)
     });
