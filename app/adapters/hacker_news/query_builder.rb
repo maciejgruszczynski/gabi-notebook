@@ -2,17 +2,18 @@
 
 module HackerNews
   class QueryBuilder
-    def initialize(search_params)
+    def initialize(search_params, page = nil)
       @search_params = search_params
+      @page = page
     end
 
     def build
-      search_type + query_string + tags + restrict_searchable_attributes
+      search_type + query_string + tags + page_number + restrict_searchable_attributes
     end
 
     private
 
-    attr_reader :search_params
+    attr_reader :search_params, :page
 
     # i.e. 'search?'
     def search_type
@@ -42,6 +43,13 @@ module HackerNews
       return '' if search_params[:restrict_searchable_attributes].empty?
 
       "restrictSearchableAttributes=#{search_params[:restrict_searchable_attributes]}"
+    end
+
+    # &page=1
+    def page_number
+      return '' unless page
+      
+      "&page=#{page}"
     end
   end
 end

@@ -5,26 +5,26 @@ module HackerNews
     def initialize
       @url = Rails.configuration.hacker_news[:api_url]
       @query_builder = QueryBuilder
+      @response_builder = Response
     end
 
     def search(params, page)
-      response = do_request(params)
+      response_builder.build(do_request(params, page))
     end
 
     private
     
-    attr_reader :url, :query_builder
+    attr_reader :url, :query_builder, :response_builder
 
-    def do_request(params)
+    def do_request(params, page)
       RestClient::Request.execute(
         method: :get,
-        url: query_url(params)
+        url: query_url(params, page)
       )
     end
 
-
-    def query_url(params)
-      query_url = query_builder.new(params).build
+    def query_url(params, page)
+      query_url = query_builder.new(params, page).build
 
       url + query_url
     end

@@ -1,0 +1,5 @@
+<tbody id="hn_search_results">
+  <% hn_search_results.results.each do |search_result| %>
+    <%= render 'hn_search_results/hn_search_result', search_result: search_result %>
+  <% end %>
+</tbody>

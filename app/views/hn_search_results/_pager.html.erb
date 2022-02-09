@@ -1,0 +1,24 @@
+<div id="pager">
+  <div>
+    <% if previous_page %>
+      <%= button_to(
+        "< Previous page",
+        search_hn_search_results_path(page: previous_page),
+        data: {
+          turbo_action: "advance"
+        }
+      ) %>
+    <% end %>
+  </div>
+  <div>
+    <% if next_page %>
+      <%= button_to(
+        "Next page >",
+        search_hn_search_results_path(page: next_page),
+        data: {
+          turbo_action: "advance"
+        }
+      ) %>
+    <% end %>
+  </div>
+</div>

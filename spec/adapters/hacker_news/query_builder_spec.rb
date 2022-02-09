@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe HackerNews::QueryBuilder do
-  subject(:builder) { described_class.new(search_params).build }
+  subject(:builder) { described_class.new(search_params, page).build }
   let(:search_type) { '' }
   let(:query_string) { '' }
   let(:restrict_searchable_attributes) { '' }
   let(:author) { '' }
   let(:tags) { [] }
   let(:story_id) { '' }
+  let(:page) { nil }
 
   let(:search_params) do 
     {
@@ -81,6 +82,20 @@ RSpec.describe HackerNews::QueryBuilder do
     let(:tags) { ['story', 'pool'] }
 
     let(:expected_string) { 'search_by_date?tags=(story,pool)' }
+
+    it 'returns expected query string' do
+      expect(builder).to eq expected_string
+    end
+  end
+
+  context "with page number" do
+    let(:search_type) { 'search' }
+    let(:query_string) { 'foo' }
+    let(:tags) { ['story'] }
+    let(:page) { 1 }
+
+    let(:expected_string) { 'search?query=foo&tags=story&page=1' }
+
 
     it 'returns expected query string' do
       expect(builder).to eq expected_string

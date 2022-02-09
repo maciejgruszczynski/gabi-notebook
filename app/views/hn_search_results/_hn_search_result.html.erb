@@ -1,0 +1,9 @@
+  <%= content_tag :tr, id: search_result.dig('objectID') do %>
+    <td><%= search_result['title'] %></td>
+    <td><%= search_result['author'] %></td>
+    <td><%= search_result['points'] %></td>
+    <td><%= search_result['story_url'] %></td>
+    <td><%= search_result['created_at'] %></td>
+    <td><%= search_result['_tags'] %></td>
+    <td><%= link_to 'Add to notebook', '#' %></td>
+  <% end %>
