@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :search_notebook do
-    title { Faker::Lorem.words }
+    sequence(:title) do |n|
+      "title_#{n}"
+    end
   end
 end

@@ -60,4 +60,34 @@ RSpec.describe "SearchNotebooks", type: :request do
       end
     end
   end
+
+  describe "POST /search_notebooks/search" do
+    subject(:do_request) { post "/search_notebooks/search", params: params, as: :turbo_stream }
+
+    let!(:search_notebooks) { create_list(:search_notebook, 3) }
+    let(:search_terms) { 'title' }
+    let(:query_object) { instance_double(SearchNotebooksQuery) }
+
+    context 'when valid data' do
+      before do
+        allow(SearchNotebooksQuery).to receive(:new).and_return(query_object)
+        allow(query_object).to receive(:find).with(search_terms).and_return(SearchNotebook.all)
+      end
+
+      let(:params) do 
+        {
+          search_terms: search_terms
+        }
+      end
+
+      it 'returns results' do
+        do_request
+
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(query_object).to have_received(:find).once
+        end
+      end
+    end
+  end
 end

@@ -4,7 +4,8 @@ class SearchNotebooksController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @search_notebooks = pagy(SearchNotebook.all, items: 10)
+    search_notebooks = SearchNotebooksQuery.new.all
+    @pagy, @search_notebooks = pagy(search_notebooks, items: 10)
     @search_notebook = SearchNotebook.new
   end
 
@@ -39,9 +40,23 @@ class SearchNotebooksController < ApplicationController
     end
   end
 
+  def search
+    respond_to do |format|
+      search_notebooks = SearchNotebooksQuery.new.find(search_params)
+      
+      @pagy, @search_notebooks = pagy(search_notebooks, items: 10)
+
+      format.turbo_stream
+    end
+  end
+
   private
 
   def search_notebook_params
     params.require(:search_notebook).permit(:title)
+  end
+  
+  def search_params
+    params[:search_terms]
   end
 end

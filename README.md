@@ -2,4 +2,7 @@
 
 
 # Known issues
-https://gSKzY_e:0MlKK4HXcseBwrtaK4siu0ie53@wwwhisper-eu.herokuapp.com:443
+- [] flash messages: flash is properly displayed only for the first time.
+- [] search: search box should always display value that corresponds to current search.
+- [] missing 'Clear search' option
+- [] missing unit tests for `SearchNotebooksQuery`
