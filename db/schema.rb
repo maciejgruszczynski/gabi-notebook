@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_132127) do
+ActiveRecord::Schema.define(version: 2022_02_09_012044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,4 +21,24 @@ ActiveRecord::Schema.define(version: 2022_02_08_132127) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "search_queries", force: :cascade do |t|
+    t.string "query", null: false
+    t.integer "hits_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "search_results", force: :cascade do |t|
+    t.string "author", null: false
+    t.integer "karma_points", default: 0, null: false
+    t.string "url", null: false
+    t.datetime "creation_date", precision: 6
+    t.string "tags", default: [], array: true
+    t.bigint "search_query_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["search_query_id"], name: "index_search_results_on_search_query_id"
+  end
+
+  add_foreign_key "search_results", "search_queries"
 end
