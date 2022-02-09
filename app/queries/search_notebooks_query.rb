@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchNotebooksQuery
   def initialize(search_notebooks = SearchNotebook.all)
     @all_notebooks = search_notebooks

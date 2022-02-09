@@ -45,6 +45,9 @@ gem 'bootsnap', require: false
 # Pagination
 gem 'pagy'
 
+# REST client library
+gem 'rest-client'
+
 # heroku add-on to limit access only to allowed users
 gem 'rack-wwwhisper', '~> 1.0'
 

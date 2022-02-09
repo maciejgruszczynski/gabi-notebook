@@ -43,7 +43,7 @@ class SearchNotebooksController < ApplicationController
   def search
     respond_to do |format|
       search_notebooks = SearchNotebooksQuery.new.find(search_params)
-      
+
       @pagy, @search_notebooks = pagy(search_notebooks, items: 10)
 
       format.turbo_stream
@@ -55,7 +55,7 @@ class SearchNotebooksController < ApplicationController
   def search_notebook_params
     params.require(:search_notebook).permit(:title)
   end
-  
+
   def search_params
     params[:search_terms]
   end
