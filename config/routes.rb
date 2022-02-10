@@ -9,11 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :hn_search_results, only: :index do
-    collection do
-      post :search, to: "hn_search_results#search"
-    end
-  end
+  resources :hn_search_results, only: :index
+  post :search_api, to: "hn_search_results#search"
+  post :add_to_notebook, to: 'search_results#create'
   
   root 'home#show'
 

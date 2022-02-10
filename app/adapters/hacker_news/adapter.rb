@@ -8,12 +8,12 @@ module HackerNews
       @response_builder = Response
     end
 
-    def search(params, page)
+    def search(params, page = nil)
       response_builder.build(do_request(params, page))
     end
 
     private
-    
+
     attr_reader :url, :query_builder, :response_builder
 
     def do_request(params, page)
@@ -25,7 +25,6 @@ module HackerNews
 
     def query_url(params, page)
       query_url = query_builder.new(params, page).build
-
       url + query_url
     end
   end

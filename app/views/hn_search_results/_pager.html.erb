@@ -1,23 +1,17 @@
 <div id="pager">
   <div>
     <% if previous_page %>
-      <%= button_to(
+      <%= link_to(
         "< Previous page",
-        search_hn_search_results_path(page: previous_page),
-        data: {
-          turbo_action: "advance"
-        }
+        hn_search_results_path(page: previous_page, tags: search_params['tags'], query: search_params['query'] )
       ) %>
     <% end %>
   </div>
   <div>
     <% if next_page %>
-      <%= button_to(
+      <%= link_to(
         "Next page >",
-        search_hn_search_results_path(page: next_page),
-        data: {
-          turbo_action: "advance"
-        }
+        hn_search_results_path(page: next_page, tags: search_params['tags'], query: search_params['query'] )
       ) %>
     <% end %>
   </div>

@@ -1,0 +1,11 @@
+<%= form_with(model: @form, url: search_api_path) do |form| %>
+  <div >
+  <%= form.label :query, 'Search for:' %>
+  <%= form.text_field :query, placeholder: 'Enter search terms...' %>
+
+  <%= form.label :tags, 'Search in:' %>
+  <%= form.select :tags, ['story', 'comment', 'poll', 'pollopt', 'show_hn', 'ask_hn', 'author'] %>
+
+  <%= form.submit 'Search' %>
+<% end %>
+  

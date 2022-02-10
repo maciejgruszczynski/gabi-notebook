@@ -1,9 +1,35 @@
   <%= content_tag :tr, id: search_result.dig('objectID') do %>
-    <td><%= search_result['title'] %></td>
-    <td><%= search_result['author'] %></td>
-    <td><%= search_result['points'] %></td>
-    <td><%= search_result['story_url'] %></td>
-    <td><%= search_result['created_at'] %></td>
-    <td><%= search_result['_tags'] %></td>
-    <td><%= link_to 'Add to notebook', '#' %></td>
+      <%= form_with model: @search_result_form, url: add_to_notebook_path do |form| %>
+        <td>
+          <%= search_result['title'] %>
+          <%= form.hidden_field :title, value: search_result['title'] %>
+        </td>
+        <td>
+          <%= search_result['author'] %>
+          <%= form.hidden_field :author, value: search_result['author'] %>
+        </td>
+        <td>
+          <%= search_result['points'] %>
+          <%= form.hidden_field :karma_points, value: search_result['points'] %>
+        </td>
+        <td>
+          <%= search_result['created_at'] %>
+          <%= form.hidden_field :created_at, value: search_result['created_at'] %>  
+        </td>
+        <td>
+          <%= search_result['_tags'] %>
+          <%= form.hidden_field :tags, value: search_result['_tags'] %>
+        </td>
+        <td>
+        <%= form.hidden_field :query, value: query %>
+        <%= form.hidden_field :hits_count, value: hits_count %>
+
+        <%= form.select :search_notebook_id, SearchNotebook.all.map { |notebook| [notebook.title, notebook.id] } %>
+        <%= form.submit 'Add to notebook', data: { turbo: true } %>
+        </td>
+
+      <% end %>
+    
   <% end %>
+
+  

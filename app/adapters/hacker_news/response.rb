@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ApiResponse = Struct.new(:data, :results, :status_code) do
   def success?
     status_code.to_i.in?(200..299)
@@ -35,6 +36,14 @@ ApiResponse = Struct.new(:data, :results, :status_code) do
   def query
     data.dig('params')
   end
+
+  def search_params
+    data.dig('params').split('&').map { |s| s.split('=') }.to_h.slice('tags', 'query')
+  end
+
+  def hits_count
+    data.dig('nbHits')
+  end
 end
 
 module HackerNews
@@ -42,7 +51,7 @@ module HackerNews
     def self.build(hn_response)
       data = JSON.parse(hn_response)
       results = data.dig('hits')
-      status_code =  hn_response.code
+      status_code = hn_response.code
 
       ApiResponse.new(data, results, status_code)
     end

@@ -6,7 +6,9 @@
 <% end %> -->
 
 <div class="table-responsive">
-  
+
+  <%= render 'search_form' %>
+
   <%= turbo_stream_from :hn_search_results %>
 
   <table class="table table-striped table-sm">
@@ -23,5 +25,5 @@
     </thead>
     <%= render 'hn_search_results', hn_search_results: @hn_search_results %>
   </table>
-  <%= render "pager", previous_page: @hn_search_results.previous_page, next_page: @hn_search_results.next_page %>
+  <%= render "pager", previous_page: @hn_search_results.previous_page, next_page: @hn_search_results.next_page, search_params: @hn_search_results.search_params %>
 </div>

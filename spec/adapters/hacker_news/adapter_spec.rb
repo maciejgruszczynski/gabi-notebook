@@ -45,7 +45,7 @@ RSpec.describe HackerNews::Adapter do
 
     it 'returns query' do
       # TODO: verify with business if query we want to store is the query returned by API as below
-      expect(adapter_call.query).to eq "advancedSyntax=true&analytics=true&analyticsTags=backend&page=1&query=foo&tags=story"
+      expect(adapter_call.query).to eq "advancedSyntax=true&analytics=true&analyticsTags=backend&page=1&tags=story"
     end
   end
 end

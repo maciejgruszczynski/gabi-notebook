@@ -8,48 +8,42 @@ module HackerNews
     end
 
     def build
-      search_type + query_string + tags + page_number + restrict_searchable_attributes
+      'search?' + build_query
     end
 
     private
 
     attr_reader :search_params, :page
 
-    # i.e. 'search?'
-    def search_type
-      "#{search_params[:search_type]}?"
+    def build_query
+      return '' unless search_params
+
+      [query_string, tags, page_number].compact.join('&')
+    end
+
+    def query_string
+      return nil if search_params[:query].blank?
+
+      "query=#{search_params[:query]}"
     end
 
     # i.e. 'tags=comment&' OR 'tags=(story,pool)'
     def tags
       tags = search_params[:tags]
 
-      return '' unless tags.any?
+      return nil unless tags.any?
 
       tgs = tags.join(',')
       tgs.prepend('(').concat(')') if tags.size > 1
-      
+
       "tags=#{tgs}"
-    end
-
-    def query_string
-      return '' if search_params[:query_string].empty?
-
-      "query=#{search_params[:query_string]}&"
-    end
-
-    # i.e. restrictSearchableAttributes=url
-    def restrict_searchable_attributes
-      return '' if search_params[:restrict_searchable_attributes].empty?
-
-      "restrictSearchableAttributes=#{search_params[:restrict_searchable_attributes]}"
     end
 
     # &page=1
     def page_number
-      return '' unless page
-      
-      "&page=#{page}"
+      return nil unless page
+
+      "page=#{page}"
     end
   end
 end

@@ -51,8 +51,6 @@ gem 'rest-client'
 # heroku add-on to limit access only to allowed users
 gem 'rack-wwwhisper', '~> 1.0'
 
-
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -85,6 +83,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'vcr'
-  gem 'webmock'
   gem 'webdrivers'
+  gem 'webmock'
 end

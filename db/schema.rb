@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_012044) do
+ActiveRecord::Schema.define(version: 2022_02_10_115212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,19 +26,22 @@ ActiveRecord::Schema.define(version: 2022_02_09_012044) do
     t.integer "hits_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "search_result_id"
+    t.index ["search_result_id"], name: "index_search_queries_on_search_result_id"
   end
 
   create_table "search_results", force: :cascade do |t|
-    t.string "author", null: false
+    t.string "author"
     t.integer "karma_points", default: 0, null: false
-    t.string "url", null: false
+    t.string "url"
     t.datetime "creation_date", precision: 6
-    t.string "tags", default: [], array: true
-    t.bigint "search_query_id"
+    t.string "tags"
+    t.bigint "search_notebook_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["search_query_id"], name: "index_search_results_on_search_query_id"
+    t.index ["search_notebook_id"], name: "index_search_results_on_search_notebook_id"
   end
 
-  add_foreign_key "search_results", "search_queries"
+  add_foreign_key "search_queries", "search_results"
+  add_foreign_key "search_results", "search_notebooks"
 end
